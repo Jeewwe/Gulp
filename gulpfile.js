@@ -1,6 +1,13 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass')(require('sass'))
 const sourcemaps = require('gulp-sourcemaps');
+const uglify = required('gulp-uglify');
+
+function comprimeJavaScript() {
+    return gulp.src('./source/scripts/*.js')
+        .pipe(uglify())
+        .pipe(gulp.dest('./build/scripts'))
+}
 
 function compilaSass() {
     return gulp.src('./source/styles/main.scss')
@@ -20,7 +27,7 @@ function funcaoPadrao(callback) {
 }
 
 function falaOi(callback) {
-    setTimeoutc(function(){
+    setTimeout(function(){
     console.log("Olá Gulp");
     sayByebye();
     callback();
@@ -37,3 +44,4 @@ exports.sass = compilaSass;
 exports.watch = function() {
     gulp.watch('./source/styles/*.scss', { ignoreInitial: false }, gulp.series(compilaSass));
 }
+exports.javascripts = comprimeJavaScript;
